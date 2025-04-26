@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sunrise & Sunset Website</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="logo">
+        <img src="images/14.gif" alt="Logo" class="logo-gif" />
+        <span class="logo-text">Ephemeral Beauty</span>
+        <button class="gallery-btn" id="toggle-gallery">View Moments</button>
+    </div>
+
+    <div class="profile">
+        <span>Hi!</span>
+        <img src="images/5.JPG" alt="Profile Icon" />
+    </div>
+</div>
+
+<!-- Hidden Image Gallery -->
+<div class="gallery" id="gallery" style="display: none;">
+    <div class="gallery-content">
+        <img src="images/5.JPG" alt="Sunset 1" />
+        <video controls>
+            <source src="images/6.MP4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <img src="images/2.JPG" alt="Sunrise 1" />
+        <img src="images/8.JPG" alt="Sunrise 2" />
+    </div>
+</div>
+
+<div class="main-container">
+
+    <div class="slide active">
+        <div class="content">
+            <h1>Whispers of Time: Sunrise & Sunset Insights</h1>
+            <p>Embrace the fleeting beauty of the day with real-time insights on sunrise and sunset timings from around the world — illuminating the moments that shape our days.</p>
+            <button class="btn" id="get-started-btn">Get Started</button>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="dashboard-container">
+            <header>
+                <h1>Sunrise & Sunset Dashboard</h1>
+            </header>
+
+            <main>
+                <section class="controls">
+                    <label for="locations">Choose a location:</label>
+                    <select id="locations"></select>
+                    <button id="use-location">Use My Location</button>
+                </section>
+
+                <section id="dashboard">
+                    <!-- Dynamic content will be inserted here -->
+                </section>
+            </main>
+
+            <footer>
+                <p class="credit">
+                    Moments in time, brought to you by <a href="https://sunrisesunset.io/api/" target="_blank">SunriseSunset.io API</a>
+                </p>
+            </footer>
+        </div>
+    </div>
+
+</div>
+
+<div class="slider-controls">
+    <button id="prev">&#8592;</button>
+    <button id="next">&#8594;</button>
+</div>
+
+<script src="script.js"></script>
+<script>
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      slides[index].classList.add('active');
+    }
+
+    document.getElementById('next').onclick = function() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    };
+
+    document.getElementById('prev').onclick = function() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    };
+
+    document.getElementById('get-started-btn').onclick = function() {
+      currentSlide = 1; // Go directly to the dashboard slide
+      showSlide(currentSlide);
+    };
+</script>
+
+</body>
+</html>
